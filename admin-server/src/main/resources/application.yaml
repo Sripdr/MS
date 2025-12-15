@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ADMIN-SERVER
+
+server:
+  port: 1001

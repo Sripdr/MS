@@ -1,0 +1,13 @@
+server:
+  port: 8004
+
+spring:
+  application:
+    name: CONFIG-SERVER
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-location: classpath:/config

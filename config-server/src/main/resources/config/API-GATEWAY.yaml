@@ -1,0 +1,37 @@
+server:
+  port: 8008
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true # Enables discovery-aware routing
+              lower-case-service-id: true
+          routes:
+            - id: user-service
+              uri: lb://USER-SERVICE # Use lb:// for load-balanced routing via Eureka
+              predicates:
+                - Path=/user/**
+            - id: order-service
+              uri: lb://ORDER-SERVICE # Use lb:// for load-balanced routing via Eureka
+              predicates:
+                - Path=/shop/order/**
+            - id: product-service
+              uri: lb://PRODUCT-SERVICE # Use lb:// for load-balanced routing via Eureka
+              predicates:
+                - Path=/shop/product/**
+  main:
+    web-application-type: reactive
+
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+
+
+
+jwt:
+  secretKey: "1HiThisIs@SrikanthPoodariHere2WeAreCreating1JwtKeyfor#theUsers.3UserAuthentication"
